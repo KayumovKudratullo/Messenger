@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Chat UI</title>
+    <link rel="stylesheet" href="{% static 'style.css' %}">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+
+<div class="container">
+    {% if is_logged_in %}
+        <p>{{user.username}}</p>
+        <a href="{% url 'logout_user' %}">Logout</a>
+    {% else %}
+        <a href="#">Login</a>
+        <a href="#">Register</a>
+    {% endif %}
+    <div class="sidebar">
+
+        <div class="search-box">
+            <i class="fa-solid fa-magnifying-glass"></i>
+            <input type="text" placeholder="Search">
+        </div>
+
+        <div class="contact active">
+            <img src="https://i.pravatar.cc/50" alt="">
+            <div>
+                <h4>John Doe</h4>
+                <p>Last message preview...</p>
+            </div>
+        </div>
+
+        <div class="contact">
+            <img src="https://i.pravatar.cc/51" alt="">
+            <div>
+                <h4>Jane Smith</h4>
+                <p>Hello there!</p>
+            </div>
+        </div>
+
+        <div class="contact">
+            <img src="https://i.pravatar.cc/52" alt="">
+            <div>
+                <h4>Michael</h4>
+                <p>How are you?</p>
+            </div>
+        </div>
+
+        <button class="new-chat">
+            <i class="fa-solid fa-plus"></i>
+            New Chat
+        </button>
+
+    </div>
+
+    <!-- Chat Section -->
+    <div class="chat-container">
+
+        <div class="messages" id="messages">
+
+            <div class="message sent">
+                Hello 👋
+            </div>
+
+            <div class="message received">
+                Hi! How are you?
+            </div>
+
+            <div class="message sent">
+                I'm fine, thanks.
+            </div>
+
+        </div>
+
+        <div class="input-area">
+            <input type="text" id="messageInput" placeholder="Type Message...">
+            <button onclick="sendMessage()">
+                <i class="fa-solid fa-paper-plane"></i>
+            </button>
+        </div>
+
+    </div>
+
+    <!-- Right Icons -->
+    <div class="right-menu">
+        <button><i class="fa-solid fa-house"></i></button>
+        <button><i class="fa-solid fa-clock-rotate-left"></i></button>
+        <button><i class="fa-solid fa-table-cells"></i></button>
+        <button><i class="fa-solid fa-gear"></i></button>
+    </div>
+
+</div>
+
+<script src="{% static 'script.js' %}"></script>
+</body>
+</html>

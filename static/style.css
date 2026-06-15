@@ -1,0 +1,167 @@
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    height:100vh;
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    background:#e5e5e5;
+}
+
+.container{
+    width:1000px;
+    height:570px;
+    background:#de7f87;
+    border-radius:40px;
+    display:flex;
+    padding:30px;
+    gap:30px;
+    box-shadow:0 20px 40px rgba(0,0,0,.15);
+}
+
+.sidebar{
+    width:300px;
+    display:flex;
+    flex-direction:column;
+}
+
+.search-box{
+    border:2px solid white;
+    border-radius:30px;
+    padding:12px 20px;
+    display:flex;
+    align-items:center;
+    gap:10px;
+    color:white;
+}
+
+.search-box input{
+    border:none;
+    outline:none;
+    background:transparent;
+    color:white;
+    width:100%;
+}
+
+.search-box input::placeholder{
+    color:white;
+}
+
+.contact{
+    display:flex;
+    align-items:center;
+    gap:15px;
+    margin-top:25px;
+    padding:15px;
+    border-radius:20px;
+    color:white;
+    cursor:pointer;
+}
+
+.contact.active{
+    border:2px solid white;
+}
+
+.contact img{
+    width:50px;
+    height:50px;
+    border-radius:50%;
+}
+
+.contact p{
+    font-size:13px;
+}
+
+.new-chat{
+    margin-top:auto;
+    background:none;
+    border:none;
+    color:white;
+    font-size:18px;
+    display:flex;
+    gap:10px;
+    align-items:center;
+    cursor:pointer;
+}
+
+.chat-container{
+    flex:1;
+    background:white;
+    border-radius:40px;
+    display:flex;
+    flex-direction:column;
+    padding:30px;
+}
+
+.messages{
+    flex:1;
+    overflow-y:auto;
+}
+
+.message{
+    max-width:300px;
+    padding:15px 20px;
+    margin-bottom:20px;
+    border-radius:20px;
+}
+
+.sent{
+    background:#f8b4c2;
+    color:#444;
+    align-self:flex-start;
+}
+
+.received{
+    background:#ddd;
+    color:#444;
+    margin-left:auto;
+}
+
+.input-area{
+    display:flex;
+    gap:15px;
+}
+
+.input-area input{
+    flex:1;
+    padding:18px;
+    border:none;
+    background:#eee;
+    border-radius:30px;
+    outline:none;
+    font-size:16px;
+}
+
+.input-area button{
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:#de7f87;
+    color:white;
+    cursor:pointer;
+    font-size:20px;
+}
+
+.right-menu{
+    display:flex;
+    flex-direction:column;
+    justify-content:space-between;
+}
+
+.right-menu button{
+    width:60px;
+    height:60px;
+    border:none;
+    border-radius:50%;
+    background:white;
+    color:#de7f87;
+    font-size:20px;
+    cursor:pointer;
+    box-shadow:0 5px 15px rgba(0,0,0,.1);
+}
