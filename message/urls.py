@@ -7,4 +7,5 @@ urlpatterns = [
     path('signup/', views.singup, name='singup'),
     path('signin/', views.singin, name='singin'),
     path('logout_user/', views.logout_user, name='logout_user'),
+    path('message/<int:recipient_id>/', views.message, name='message'),
 ]

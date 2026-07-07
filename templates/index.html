@@ -4,96 +4,367 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Chat UI</title>
+    <title>Telegram Clone</title>
+
     <link rel="stylesheet" href="{% static 'style.css' %}">
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" rel="stylesheet">
+
+    <link rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
 </head>
 <body>
 
 <div class="container">
-    {% if is_logged_in %}
-        <p>{{user.username}}</p>
-        <a href="{% url 'logout_user' %}">Logout</a>
-    {% else %}
-        <a href="#">Login</a>
-        <a href="#">Register</a>
-    {% endif %}
-    <div class="sidebar">
+
+    <!-- ================= SIDEBAR ================= -->
+
+    <aside class="sidebar">
+
+        <div class="top-menu">
+
+            {% if is_logged_in %}
+            <div class="user">
+
+                <div class="user-image">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+
+                <div class="user-info">
+                    <h3>{{ user.username }}</h3>
+                    <span>Online</span>
+                </div>
+
+                <a href="{% url 'logout_user' %}" class="logout">
+                    <i class="fa-solid fa-right-from-bracket"></i>
+                </a>
+
+            </div>
+
+            {% else %}
+
+            <div class="auth-buttons">
+
+                <a href="#">Login</a>
+
+                <a href="#">Register</a>
+
+            </div>
+
+            {% endif %}
+
+        </div>
+
+        <!-- SEARCH -->
 
         <div class="search-box">
+
             <i class="fa-solid fa-magnifying-glass"></i>
-            <input type="text" placeholder="Search">
+
+            <input
+            type="text"
+            placeholder="Search">
+
         </div>
 
-        <div class="contact active">
-            <img src="https://i.pravatar.cc/50" alt="">
-            <div>
-                <h4>John Doe</h4>
-                <p>Last message preview...</p>
-            </div>
-        </div>
+        <!-- CHAT LIST -->
 
-        <div class="contact">
-            <img src="https://i.pravatar.cc/51" alt="">
-            <div>
-                <h4>Jane Smith</h4>
-                <p>Hello there!</p>
-            </div>
-        </div>
+        <div class="chat-list">
 
-        <div class="contact">
-            <img src="https://i.pravatar.cc/52" alt="">
-            <div>
-                <h4>Michael</h4>
-                <p>How are you?</p>
+            <div class="contact active">
+
+                <img src="https://i.pravatar.cc/60?img=1">
+
+                <div class="contact-info">
+
+                    <div class="contact-top">
+
+                        <h4>John Doe</h4>
+
+                        <span>11:43</span>
+
+                    </div>
+
+                    <div class="contact-bottom">
+
+                        <p>Hello 👋</p>
+
+                        <span class="badge">2</span>
+
+                    </div>
+
+                </div>
+
             </div>
+
+            <div class="contact">
+
+                <img src="https://i.pravatar.cc/60?img=2">
+
+                <div class="contact-info">
+
+                    <div class="contact-top">
+
+                        <h4>Jane Smith</h4>
+
+                        <span>10:11</span>
+
+                    </div>
+
+                    <div class="contact-bottom">
+
+                        <p>How are you?</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="contact">
+
+                <img src="https://i.pravatar.cc/60?img=3">
+
+                <div class="contact-info">
+
+                    <div class="contact-top">
+
+                        <h4>Michael</h4>
+
+                        <span>Yesterday</span>
+
+                    </div>
+
+                    <div class="contact-bottom">
+
+                        <p>See you tomorrow.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="contact">
+
+                <img src="https://i.pravatar.cc/60?img=4">
+
+                <div class="contact-info">
+
+                    <div class="contact-top">
+
+                        <h4>Emma</h4>
+
+                        <span>Yesterday</span>
+
+                    </div>
+
+                    <div class="contact-bottom">
+
+                        <p>👍 Sticker</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div class="contact">
+
+                <img src="https://i.pravatar.cc/60?img=5">
+
+                <div class="contact-info">
+
+                    <div class="contact-top">
+
+                        <h4>Daniel</h4>
+
+                        <span>Monday</span>
+
+                    </div>
+
+                    <div class="contact-bottom">
+
+                        <p>Let's meet.</p>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
 
         <button class="new-chat">
-            <i class="fa-solid fa-plus"></i>
-            New Chat
+
+            <i class="fa-solid fa-pen"></i>
+
         </button>
 
-    </div>
+    </aside>
+        <!-- ================= CHAT ================= -->
 
-    <!-- Chat Section -->
-    <div class="chat-container">
+    <main class="chat-container">
+
+        <!-- Header -->
+
+        <div class="chat-header">
+
+            <div class="chat-user">
+
+                <img src="https://i.pravatar.cc/60?img=1" alt="">
+
+                <div>
+
+                    <h3>John Doe</h3>
+
+                    <span>last seen recently</span>
+
+                </div>
+
+            </div>
+
+            <div class="chat-actions">
+
+                <button>
+                    <i class="fa-solid fa-magnifying-glass"></i>
+                </button>
+
+                <button>
+                    <i class="fa-solid fa-phone"></i>
+                </button>
+
+                <button>
+                    <i class="fa-solid fa-ellipsis-vertical"></i>
+                </button>
+
+            </div>
+
+        </div>
+
+        <!-- Messages -->
 
         <div class="messages" id="messages">
 
+            <div class="message received">
+
+                <p>Hello 👋</p>
+
+                <span>10:25</span>
+
+            </div>
+
             <div class="message sent">
-                Hello 👋
+
+                <p>Hi! How are you?</p>
+
+                <span>10:26 ✓✓</span>
+
             </div>
 
             <div class="message received">
-                Hi! How are you?
+
+                <p>I'm doing great.</p>
+
+                <span>10:27</span>
+
             </div>
 
             <div class="message sent">
-                I'm fine, thanks.
+
+                <p>Nice to hear 😊</p>
+
+                <span>10:28 ✓✓</span>
+
             </div>
 
         </div>
 
+        <!-- Bottom -->
+
         <div class="input-area">
-            <input type="text" id="messageInput" placeholder="Type Message...">
-            <button onclick="sendMessage()">
+
+            <button class="emoji-btn">
+                <i class="fa-regular fa-face-smile"></i>
+            </button>
+
+            <input
+                id="messageInput"
+                type="text"
+                placeholder="Write a message..."
+            >
+
+            <button class="attach-btn">
+                <i class="fa-solid fa-paperclip"></i>
+            </button>
+
+            <button class="send-btn" id="sendBtn">
                 <i class="fa-solid fa-paper-plane"></i>
             </button>
+
         </div>
 
-    </div>
+    </main>
+        <!-- ================= RIGHT PANEL ================= -->
 
-    <!-- Right Icons -->
-    <div class="right-menu">
-        <button><i class="fa-solid fa-house"></i></button>
-        <button><i class="fa-solid fa-clock-rotate-left"></i></button>
-        <button><i class="fa-solid fa-table-cells"></i></button>
-        <button><i class="fa-solid fa-gear"></i></button>
-    </div>
+    <aside class="right-panel">
+
+        <div class="profile">
+
+            <img src="https://i.pravatar.cc/150?img=1" alt="">
+
+            <h2>John Doe</h2>
+
+            <p>Last seen recently</p>
+
+        </div>
+
+        <div class="info-section">
+
+            <div class="info-item">
+                <i class="fa-solid fa-bell"></i>
+                <span>Notifications</span>
+            </div>
+
+            <div class="info-item">
+                <i class="fa-solid fa-image"></i>
+                <span>Shared Media</span>
+            </div>
+
+            <div class="info-item">
+                <i class="fa-solid fa-link"></i>
+                <span>Shared Links</span>
+            </div>
+
+            <div class="info-item">
+                <i class="fa-solid fa-file"></i>
+                <span>Shared Files</span>
+            </div>
+
+            <div class="info-item">
+                <i class="fa-solid fa-user-group"></i>
+                <span>Common Groups</span>
+            </div>
+
+        </div>
+
+        <div class="settings">
+
+            <button>
+                <i class="fa-solid fa-gear"></i>
+                Settings
+            </button>
+
+            <button>
+                <i class="fa-solid fa-circle-half-stroke"></i>
+                Dark Mode
+            </button>
+
+        </div>
+
+    </aside>
 
 </div>
 
 <script src="{% static 'script.js' %}"></script>
+
 </body>
 </html>
