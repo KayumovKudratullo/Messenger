@@ -1,3 +1,4 @@
+from django.db.models import Q
 from django.shortcuts import get_object_or_404
 from django.shortcuts import render, redirect # type: ignore
 from message import models
@@ -7,7 +8,7 @@ def index(request):
     is_logged_in = 'user_id' in request.session
     if is_logged_in:
         user = models.Users.objects.get(id=request.session['user_id'])
-        users = models.Users.objects.exclude(id=user.id)[:2]
+        users = models.Users.objects.exclude(id=user.id)
         return render(request, 'index.html', {
             'is_logged_in': is_logged_in,
             'user': user,
@@ -47,15 +48,23 @@ def logout_user(request):
     return redirect('singin')
 
 def message(request, recipient_id):
+
+    current_user = request.session["user_id"]
     recipient = models.Users.objects.get(id=recipient_id)
-    print('aaaaaaaaaaaaaaaaaa')
+
+    messages = models.Message.objects.filter(
+        Q(sender_id=current_user, recipient_id=recipient_id) |
+        Q(sender_id=recipient_id, recipient_id=current_user)
+    ).order_by("created_at")
+
     if request.method == "POST":
-        print('iiiiiiiiiiiiiiiiiiiiiii')
         print(request.POST['message'])
         models.Message.objects.create(
             sender=models.Users.objects.get(id=request.session["user_id"]),
             recipient=recipient,
             message=request.POST["message"],
         )
-        
-    return render(request, 'index.html')
+    context = {
+        'messages': messages
+    }
+    return render(request, 'index.html', context)

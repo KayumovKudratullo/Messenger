@@ -68,8 +68,8 @@
         <!-- CHAT LIST -->
 
         <div class="chat-list">
-
-            <div class="contact active">
+        {% for user in users %}
+            <!-- <div class="contact active">
 
                 <img src="https://i.pravatar.cc/60?img=1">
 
@@ -165,7 +165,7 @@
 
                 </div>
 
-            </div>
+            </div> -->
 
             <div class="contact">
 
@@ -175,7 +175,7 @@
 
                     <div class="contact-top">
 
-                        <h4>Daniel</h4>
+                        <a href="{% url 'message' user.id %}">{{user.username}}</a>
 
                         <span>Monday</span>
 
@@ -190,7 +190,7 @@
                 </div>
 
             </div>
-
+        {% endfor %}
         </div>
 
         <button class="new-chat">
@@ -244,61 +244,53 @@
 
         <div class="messages" id="messages">
 
-            <div class="message received">
+            {% for message in messages %}
+                {% if message.sender.id == user.id %}
+                <div class="message received">
+                        
+                    <p>{{message.message}}</p>
+                    
+                    <span>{{message.created_at}}</span>
+                    
+                </div>
+                    
+                {% else %}
+                    <div class="message sent">
 
-                <p>Hello 👋</p>
-
-                <span>10:25</span>
-
-            </div>
-
-            <div class="message sent">
-
-                <p>Hi! How are you?</p>
-
-                <span>10:26 ✓✓</span>
-
-            </div>
-
-            <div class="message received">
-
-                <p>I'm doing great.</p>
-
-                <span>10:27</span>
-
-            </div>
-
-            <div class="message sent">
-
-                <p>Nice to hear 😊</p>
-
-                <span>10:28 ✓✓</span>
-
-            </div>
-
+                        <p>{{message.message}}</p>
+                    
+                        <span>{{message.created_at}}✓✓</span>
+                    
+                    </div>
+                {% endif %}
+                    
+            {% endfor %}
         </div>
 
         <!-- Bottom -->
 
         <div class="input-area">
+            <form action="" method="post">
+                {% csrf_token %}
 
-            <button class="emoji-btn">
-                <i class="fa-regular fa-face-smile"></i>
-            </button>
-
-            <input
-                id="messageInput"
-                type="text"
-                placeholder="Write a message..."
-            >
-
-            <button class="attach-btn">
-                <i class="fa-solid fa-paperclip"></i>
-            </button>
-
-            <button class="send-btn" id="sendBtn">
-                <i class="fa-solid fa-paper-plane"></i>
-            </button>
+                <button class="emoji-btn">
+                    <i class="fa-regular fa-face-smile"></i>
+                </button>
+                <input
+                    id="messageInput"
+                    type="text"
+                    placeholder="Write a message..."
+                    name="message"
+                >
+                
+                <button class="attach-btn">
+                    <i class="fa-solid fa-paperclip"></i>
+                </button>
+                
+                <button class="send-btn" id="sendBtn" type="submit">
+                    <i class="fa-solid fa-paper-plane"></i>
+                </button>
+            </form>
 
         </div>
 
